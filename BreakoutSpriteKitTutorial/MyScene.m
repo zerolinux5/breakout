@@ -62,7 +62,7 @@ static const uint32_t paddleCategory = 0x1 << 3; // 0000000000000000000000000000
         
         ball.physicsBody.categoryBitMask = ballCategory;
         
-        ball.physicsBody.contactTestBitMask = bottomCategory;
+        ball.physicsBody.contactTestBitMask = bottomCategory | blockCategory;
         
         [ball.physicsBody applyImpulse:CGVectorMake(10.0f, -10.0f)];
         
@@ -153,10 +153,34 @@ static const uint32_t paddleCategory = 0x1 << 3; // 0000000000000000000000000000
         secondBody = contact.bodyA;
     }
     // 3 react to the contact between ball and bottom
-    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == bottomCategory) {
-        //TODO: Replace the log statement with display of Game Over Scene
-        GameOverScene* gameOverScene = [[GameOverScene alloc] initWithSize:self.frame.size playerWon:NO];
-        [self.view presentScene:gameOverScene];
+    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == blockCategory) {
+        [secondBody.node removeFromParent];
+        if ([self isGameWon]) {
+            GameOverScene* gameWonScene = [[GameOverScene alloc] initWithSize:self.frame.size playerWon:YES];
+            [self.view presentScene:gameWonScene];
+        }
+    }
+}
+
+-(BOOL)isGameWon {
+    int numberOfBricks = 0;
+    for (SKNode* node in self.children) {
+        if ([node.name isEqual: blockCategoryName]) {
+            numberOfBricks++;
+        }
+    }
+    return numberOfBricks <= 0;
+}
+
+-(void)update:(CFTimeInterval)currentTime {
+    /* Called before each frame is rendered */
+    SKNode* ball = [self childNodeWithName: ballCategoryName];
+    static int maxSpeed = 1000;
+    float speed = sqrt(ball.physicsBody.velocity.dx*ball.physicsBody.velocity.dx + ball.physicsBody.velocity.dy * ball.physicsBody.velocity.dy);
+    if (speed > maxSpeed) {
+        ball.physicsBody.linearDamping = 0.4f;
+    } else {
+        ball.physicsBody.linearDamping = 0.0f;
     }
 }
 
