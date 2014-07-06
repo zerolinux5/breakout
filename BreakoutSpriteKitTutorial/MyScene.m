@@ -8,46 +8,48 @@
 
 #import "MyScene.h"
 
+static NSString* ballCategoryName = @"ball";
+static NSString* paddleCategoryName = @"paddle";
+static NSString* blockCategoryName = @"block";
+static NSString* blockNodeCategoryName = @"blockNode";
+
 @implementation MyScene
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
+        SKSpriteNode* background = [SKSpriteNode spriteNodeWithImageNamed:@"bg.png"];
+        background.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        [self addChild:background];
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        // 1 Create a physics body that borders the screen
+        SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+        // 2 Set physicsBody of scene to borderBody
+        self.physicsBody = borderBody;
+        // 3 Set the friction of that physicsBody to 0
+        self.physicsBody.friction = 0.0f;
         
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
+        // 1
+        SKSpriteNode* ball = [SKSpriteNode spriteNodeWithImageNamed: @"ball.png"];
+        ball.name = ballCategoryName;
+        ball.position = CGPointMake(self.frame.size.width/3, self.frame.size.height/3);
+        [self addChild:ball];
         
-        [self addChild:myLabel];
+        // 2
+        ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2];
+        // 3
+        ball.physicsBody.friction = 0.0f;
+        // 4
+        ball.physicsBody.restitution = 1.0f;
+        // 5
+        ball.physicsBody.linearDamping = 0.0f;
+        // 6
+        ball.physicsBody.allowsRotation = NO;
+        
+        [ball.physicsBody applyImpulse:CGVectorMake(10.0f, -10.0f)];
     }
     return self;
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-    
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
-    }
-}
-
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
 }
 
 @end

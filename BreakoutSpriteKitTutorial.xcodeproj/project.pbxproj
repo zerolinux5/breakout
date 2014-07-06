@@ -24,6 +24,11 @@
 		EA39D27C1969B19F0053D8D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA39D2571969B19E0053D8D6 /* UIKit.framework */; };
 		EA39D2841969B19F0053D8D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2821969B19F0053D8D6 /* InfoPlist.strings */; };
 		EA39D2861969B19F0053D8D6 /* BreakoutSpriteKitTutorialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA39D2851969B19F0053D8D6 /* BreakoutSpriteKitTutorialTests.m */; };
+		EA39D2961969B22D0053D8D6 /* assets.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2901969B22D0053D8D6 /* assets.atlas */; };
+		EA39D2971969B22D0053D8D6 /* bg@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2921969B22D0053D8D6 /* bg@2x~ipad.png */; };
+		EA39D2981969B22D0053D8D6 /* bg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2931969B22D0053D8D6 /* bg@2x~iphone.png */; };
+		EA39D2991969B22D0053D8D6 /* bg~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2941969B22D0053D8D6 /* bg~ipad.png */; };
+		EA39D29A1969B22D0053D8D6 /* bg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2951969B22D0053D8D6 /* bg~iphone.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +65,11 @@
 		EA39D2811969B19F0053D8D6 /* BreakoutSpriteKitTutorialTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BreakoutSpriteKitTutorialTests-Info.plist"; sourceTree = "<group>"; };
 		EA39D2831969B19F0053D8D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA39D2851969B19F0053D8D6 /* BreakoutSpriteKitTutorialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BreakoutSpriteKitTutorialTests.m; sourceTree = "<group>"; };
+		EA39D2901969B22D0053D8D6 /* assets.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = assets.atlas; sourceTree = "<group>"; };
+		EA39D2921969B22D0053D8D6 /* bg@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x~ipad.png"; sourceTree = "<group>"; };
+		EA39D2931969B22D0053D8D6 /* bg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x~iphone.png"; sourceTree = "<group>"; };
+		EA39D2941969B22D0053D8D6 /* bg~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg~ipad.png"; sourceTree = "<group>"; };
+		EA39D2951969B22D0053D8D6 /* bg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg~iphone.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +131,7 @@
 		EA39D25B1969B19E0053D8D6 /* BreakoutSpriteKitTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				EA39D28F1969B22D0053D8D6 /* Resources */,
 				EA39D2641969B19E0053D8D6 /* AppDelegate.h */,
 				EA39D2651969B19E0053D8D6 /* AppDelegate.m */,
 				EA39D2671969B19E0053D8D6 /* Main.storyboard */,
@@ -162,6 +173,26 @@
 				EA39D2821969B19F0053D8D6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA39D28F1969B22D0053D8D6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA39D2901969B22D0053D8D6 /* assets.atlas */,
+				EA39D2911969B22D0053D8D6 /* backgrounds */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EA39D2911969B22D0053D8D6 /* backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				EA39D2921969B22D0053D8D6 /* bg@2x~ipad.png */,
+				EA39D2931969B22D0053D8D6 /* bg@2x~iphone.png */,
+				EA39D2941969B22D0053D8D6 /* bg~ipad.png */,
+				EA39D2951969B22D0053D8D6 /* bg~iphone.png */,
+			);
+			path = backgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,8 +273,13 @@
 			files = (
 				EA39D2601969B19E0053D8D6 /* InfoPlist.strings in Resources */,
 				EA39D2731969B19E0053D8D6 /* Images.xcassets in Resources */,
+				EA39D2981969B22D0053D8D6 /* bg@2x~iphone.png in Resources */,
+				EA39D2991969B22D0053D8D6 /* bg~ipad.png in Resources */,
 				EA39D2711969B19E0053D8D6 /* Spaceship.png in Resources */,
+				EA39D2961969B22D0053D8D6 /* assets.atlas in Resources */,
+				EA39D2971969B22D0053D8D6 /* bg@2x~ipad.png in Resources */,
 				EA39D2691969B19E0053D8D6 /* Main.storyboard in Resources */,
+				EA39D29A1969B22D0053D8D6 /* bg~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
