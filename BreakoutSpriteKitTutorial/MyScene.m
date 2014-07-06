@@ -7,11 +7,17 @@
 //
 
 #import "MyScene.h"
+#import "GameOverScene.h"
 
 static NSString* ballCategoryName = @"ball";
 static NSString* paddleCategoryName = @"paddle";
 static NSString* blockCategoryName = @"block";
 static NSString* blockNodeCategoryName = @"blockNode";
+
+static const uint32_t ballCategory  = 0x1 << 0;  // 00000000000000000000000000000001
+static const uint32_t bottomCategory = 0x1 << 1; // 00000000000000000000000000000010
+static const uint32_t blockCategory = 0x1 << 2;  // 00000000000000000000000000000100
+static const uint32_t paddleCategory = 0x1 << 3; // 00000000000000000000000000001000
 
 @interface MyScene()
 
@@ -23,6 +29,7 @@ static NSString* blockNodeCategoryName = @"blockNode";
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
+        self.physicsWorld.contactDelegate = self;
         SKSpriteNode* background = [SKSpriteNode spriteNodeWithImageNamed:@"bg.png"];
         background.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         [self addChild:background];
@@ -53,6 +60,10 @@ static NSString* blockNodeCategoryName = @"blockNode";
         // 6
         ball.physicsBody.allowsRotation = NO;
         
+        ball.physicsBody.categoryBitMask = ballCategory;
+        
+        ball.physicsBody.contactTestBitMask = bottomCategory;
+        
         [ball.physicsBody applyImpulse:CGVectorMake(10.0f, -10.0f)];
         
         SKSpriteNode* paddle = [[SKSpriteNode alloc] initWithImageNamed: @"paddle.png"];
@@ -62,8 +73,16 @@ static NSString* blockNodeCategoryName = @"blockNode";
         paddle.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:paddle.frame.size];
         paddle.physicsBody.restitution = 0.1f;
         paddle.physicsBody.friction = 0.4f;
+        paddle.physicsBody.categoryBitMask = paddleCategory;
         // make physicsBody static
         paddle.physicsBody.dynamic = NO;
+        
+        CGRect bottomRect = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 1);
+        SKNode* bottom = [SKNode node];
+        bottom.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:bottomRect];
+        bottom.physicsBody.categoryBitMask = bottomCategory;
+        [self addChild:bottom];
+        
     }
     return self;
 }
@@ -101,6 +120,26 @@ static NSString* blockNodeCategoryName = @"blockNode";
 
 -(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
     self.isFingerOnPaddle = NO;
+}
+
+-(void)didBeginContact:(SKPhysicsContact*)contact {
+    // 1 Create local variables for two physics bodies
+    SKPhysicsBody* firstBody;
+    SKPhysicsBody* secondBody;
+    // 2 Assign the two physics bodies so that the one with the lower category is always stored in firstBody
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    } else {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    // 3 react to the contact between ball and bottom
+    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == bottomCategory) {
+        //TODO: Replace the log statement with display of Game Over Scene
+        GameOverScene* gameOverScene = [[GameOverScene alloc] initWithSize:self.frame.size playerWon:NO];
+        [self.view presentScene:gameOverScene];
+    }
 }
 
 @end

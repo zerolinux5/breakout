@@ -29,6 +29,7 @@
 		EA39D2981969B22D0053D8D6 /* bg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2931969B22D0053D8D6 /* bg@2x~iphone.png */; };
 		EA39D2991969B22D0053D8D6 /* bg~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2941969B22D0053D8D6 /* bg~ipad.png */; };
 		EA39D29A1969B22D0053D8D6 /* bg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39D2951969B22D0053D8D6 /* bg~iphone.png */; };
+		EA39D29D1969B7840053D8D6 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EA39D29C1969B7840053D8D6 /* GameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		EA39D2931969B22D0053D8D6 /* bg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x~iphone.png"; sourceTree = "<group>"; };
 		EA39D2941969B22D0053D8D6 /* bg~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg~ipad.png"; sourceTree = "<group>"; };
 		EA39D2951969B22D0053D8D6 /* bg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg~iphone.png"; sourceTree = "<group>"; };
+		EA39D29B1969B7840053D8D6 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		EA39D29C1969B7840053D8D6 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +145,8 @@
 				EA39D2701969B19E0053D8D6 /* Spaceship.png */,
 				EA39D2721969B19E0053D8D6 /* Images.xcassets */,
 				EA39D25C1969B19E0053D8D6 /* Supporting Files */,
+				EA39D29B1969B7840053D8D6 /* GameOverScene.h */,
+				EA39D29C1969B7840053D8D6 /* GameOverScene.m */,
 			);
 			path = BreakoutSpriteKitTutorial;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA39D29D1969B7840053D8D6 /* GameOverScene.m in Sources */,
 				EA39D26F1969B19E0053D8D6 /* MyScene.m in Sources */,
 				EA39D26C1969B19E0053D8D6 /* ViewController.m in Sources */,
 				EA39D2661969B19E0053D8D6 /* AppDelegate.m in Sources */,
